@@ -10,9 +10,9 @@
     :root{--bg:#080d18;--panel:#101a2b;--blue:#38bdf8;--cyan:#67e8f9;--white:#f0f9ff;--muted:#9bb0c9;--border:rgba(56,189,248,.2)}
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;scroll-padding-top:90px}
-    body{background:radial-gradient(ellipse at 50% 0%,#102b4a 0%,transparent 55%),var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.8;min-height:100vh;overflow-x:hidden}
+    body{isolation:isolate;background:radial-gradient(ellipse at 50% 0%,#102b4a 0%,transparent 55%),var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.8;min-height:100vh;overflow-x:hidden}
     a{color:inherit;text-decoration:none}button{font:inherit}
-    #nano-particles{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    #nano-particles{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
     header,main,footer,#toast{position:relative;z-index:1}
     .wrap{width:min(1100px,92%);margin:auto}
     header{position:sticky;top:0;z-index:10;background:rgba(8,13,24,.88);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
@@ -52,7 +52,7 @@
     .support-float{position:fixed;right:16px;bottom:20px;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 16px;color:#f0f9ff;background:linear-gradient(135deg,#101a2b,#080d18);border:1px solid #38bdf8;border-radius:16px;box-shadow:0 0 16px rgba(56,189,248,.35);font-weight:bold;transition:transform .2s,box-shadow .2s}
     .support-float:hover{transform:translateY(-3px);box-shadow:0 0 24px rgba(56,189,248,.55)}.support-float span:last-child{color:var(--cyan);font-size:14px}
     @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:520px){.nav{justify-content:center}.nav-links{justify-content:center;gap:14px}.hero{padding:58px 0 40px}.grid{grid-template-columns:1fr}.card{padding:22px}.server-box,.contact-box{padding:22px 14px}.support-float{right:12px;bottom:16px;padding:11px 14px}}
+    @media(max-width:520px){.nav{justify-content:center;position:relative}.nav-links{position:relative;z-index:2;justify-content:center;gap:14px}.hero{padding:58px 0 40px}.grid{grid-template-columns:1fr}.card{padding:22px}.server-box,.contact-box{padding:22px 14px}.support-float{right:12px;bottom:16px;padding:11px 14px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -127,13 +127,6 @@
     const toast=document.getElementById("toast");let toastTimer;
     function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2800);}
     document.getElementById("copy-ip").addEventListener("click",async()=>{const ip=document.getElementById("server-ip").textContent.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(ip);}else{const field=document.createElement("textarea");field.value=ip;field.style.position="fixed";field.style.opacity="0";document.body.appendChild(field);field.select();const copied=document.execCommand("copy");field.remove();if(!copied)throw new Error("Copy failed");}showToast("آدرس سرور کپی شد: "+ip);}catch{showToast("آدرس سرور: "+ip);}});
-    (()=>{const canvas=document.getElementById("nano-particles"),ctx=canvas.getContext("2d");if(!ctx||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;let width=0,height=0,particles=[],frame;
-    function resize(){const ratio=Math.min(window.devicePixelRatio||1,2);width=window.innerWidth;height=window.innerHeight;canvas.width=width*ratio;canvas.height=height*ratio;ctx.setTransform(ratio,0,0,ratio,0,0);const count=Math.min(65,Math.floor(width/18));particles=Array.from({length:count},()=>({x:Math.random()*width,y:Math.random()*height,r:Math.random()*2+.5,speed:Math.random()*.45+.12,drift:(Math.random()-.5)*.35,alpha:Math.random()*.5+.2}));}
-    function draw(){ctx.clearRect(0,0,width,height);for(const p of particles){p.y-=p.speed;p.x+=p.drift;if(p.y< -5){p.y=height+5;p.x=Math.random()*width;}if(p.x< -5)p.x=width+5;if(p.x>width+5)p.x=-5;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(56,189,248,"+p.alpha+")";ctx.shadowBlur=10;ctx.shadowColor="#38bdf8";ctx.fill();}ctx.shadowBlur=0;frame=requestAnimationFrame(draw);}
-    resize();draw();window.addEventListener("resize",resize);document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(frame);else{cancelAnimationFrame(frame);draw();}});})();
-  </script>
-</body>
-</html>"copy");field.remove();if(!copied)throw new Error("Copy failed");}showToast("آدرس سرور کپی شد: "+ip);}catch{showToast("آدرس سرور: "+ip);}});
     (()=>{const canvas=document.getElementById("nano-particles"),ctx=canvas.getContext("2d");if(!ctx||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;let width=0,height=0,particles=[],frame;
     function resize(){const ratio=Math.min(window.devicePixelRatio||1,2);width=window.innerWidth;height=window.innerHeight;canvas.width=width*ratio;canvas.height=height*ratio;ctx.setTransform(ratio,0,0,ratio,0,0);const count=Math.min(65,Math.floor(width/18));particles=Array.from({length:count},()=>({x:Math.random()*width,y:Math.random()*height,r:Math.random()*2+.5,speed:Math.random()*.45+.12,drift:(Math.random()-.5)*.35,alpha:Math.random()*.5+.2}));}
     function draw(){ctx.clearRect(0,0,width,height);for(const p of particles){p.y-=p.speed;p.x+=p.drift;if(p.y< -5){p.y=height+5;p.x=Math.random()*width;}if(p.x< -5)p.x=width+5;if(p.x>width+5)p.x=-5;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(56,189,248,"+p.alpha+")";ctx.shadowBlur=10;ctx.shadowColor="#38bdf8";ctx.fill();}ctx.shadowBlur=0;frame=requestAnimationFrame(draw);}
