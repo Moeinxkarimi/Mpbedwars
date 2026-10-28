@@ -1,569 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090914">
-<meta name="description" content="Royal Craft؛ دنیای متفاوت ماینکرفت، رنک‌ها و کی‌های ویژه سرور.">
-<title>Royal Craft | شاپ رسمی</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
-
-:root{
-  --bg:#090914;
-  --panel:#111121;
-  --panel2:#17172b;
-  --purple:#a855f7;
-  --purple2:#7c3aed;
-  --pink:#ec4899;
-  --text:#f8f7ff;
-  --muted:#aaa8c3;
-  --border:rgba(184,140,255,.17);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  font-family:'Vazirmatn',Tahoma,sans-serif;
-  background:
-    radial-gradient(ellipse at 50% -15%,rgba(124,58,237,.22),transparent 50%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.8;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer}
-.container{width:min(1120px,calc(100% - 36px));margin:auto}
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(9,9,20,.83);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
-}
-.nav{
-  min-height:76px;display:flex;align-items:center;
-  justify-content:space-between;gap:22px;
-}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
-.logo-icon{
-  display:grid;place-items:center;width:42px;height:42px;
-  border-radius:14px;background:linear-gradient(135deg,#9333ea,#4f46e5);
-  box-shadow:0 0 25px #9333ea45;font-size:22px;
-}
-.logo span{color:#c084fc}
-.nav-links{display:flex;align-items:center;gap:24px;color:#c8c4df;font-size:14px}
-.nav-links a{transition:.2s}
-.nav-links a:hover{color:#d8b4fe}
-.nav-cta,.btn{
-  border:1px solid transparent;border-radius:12px;padding:11px 17px;
-  display:inline-flex;justify-content:center;align-items:center;gap:8px;
-  font-weight:800;font-size:14px;transition:transform .2s,box-shadow .2s,background .2s;
-}
-.nav-cta,.btn-primary{
-  color:white;background:linear-gradient(135deg,#9333ea,#6d28d9);
-  box-shadow:0 7px 24px #7c3aed30;
-}
-.nav-cta:hover,.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #7c3aed40}
-.menu-btn{
-  display:none;background:#17172b;border:1px solid var(--border);
-  color:white;border-radius:10px;padding:8px 12px;font-size:20px;
-}
-.hero{position:relative;text-align:center;padding:100px 0 82px;overflow:hidden}
-.hero::before,.hero::after{
-  content:"";position:absolute;width:300px;height:300px;border-radius:50%;
-  filter:blur(100px);opacity:.15;pointer-events:none;
-}
-.hero::before{background:#a855f7;top:30px;right:-180px}
-.hero::after{background:#ec4899;bottom:0;left:-180px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid #a855f747;background:#a855f711;color:#d8b4fe;
-  padding:7px 15px;border-radius:50px;font-size:13px;font-weight:700;
-}
-.hero h1{font-size:clamp(35px,6vw,65px);line-height:1.35;font-weight:900;margin:23px 0 18px;letter-spacing:-1.5px}
-.gradient-text{
-  background:linear-gradient(90deg,#e9d5ff,#c084fc,#f0abfc);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:16px}
-.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn-secondary{background:#17172b;border-color:var(--border);color:#f4eaff}
-.hero-stats{
-  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:48px;
-}
-.stat{
-  min-width:145px;padding:15px 23px;border:1px solid var(--border);
-  background:#ffffff05;border-radius:16px;
-}
-.stat strong{display:block;font-size:22px;color:#d8b4fe}
-.stat small{color:var(--muted);font-size:12px}
-section{padding:68px 0}
-.section-head{text-align:center;margin-bottom:32px}
-.section-head .eyebrow{margin-bottom:12px}
-.section-head h2{font-size:clamp(26px,4vw,36px);font-weight:900}
-.section-head p{color:var(--muted);font-size:14px;margin-top:8px}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.card{
-  position:relative;overflow:hidden;padding:24px 20px;
-  background:linear-gradient(160deg,#17172a,#10101d);
-  border:1px solid var(--border);border-radius:20px;
-  transition:transform .25s,border-color .25s,box-shadow .25s;
-}
-.card::before{
-  content:"";position:absolute;inset:0 0 auto;height:3px;
-  background:linear-gradient(90deg,transparent,#a855f7,transparent);
-  opacity:.7;
-}
-.card:hover{transform:translateY(-7px);border-color:#a855f76b;box-shadow:0 15px 40px #0004}
-.card-icon{
-  width:58px;height:58px;border-radius:17px;display:grid;place-items:center;
-  font-size:28px;margin-bottom:17px;
-  background:linear-gradient(135deg,#9333ea30,#ec489920);
-  border:1px solid #a855f733;
-}
-.card h3{font-size:19px;font-weight:900}
-.card .subtitle{color:var(--muted);font-size:13px;margin-top:3px}
-.price{font-size:23px;font-weight:900;margin:19px 0 15px;color:#e9d5ff}
-.price small{font-size:12px;color:var(--muted);font-weight:500}
-.card .btn{width:100%}
-.card-tag{
-  position:absolute;top:15px;left:15px;border-radius:8px;
-  background:#a855f71c;color:#d8b4fe;padding:3px 8px;font-size:10px;font-weight:800;
-}
-.notice{
-  margin-top:24px;padding:15px 18px;border:1px solid #fbbf2430;
-  background:#fbbf2409;border-radius:14px;color:#e9d5a5;font-size:13px;
-}
-.notice strong{color:#fde68a}
-.join-box{
-  padding:34px;border:1px solid var(--border);border-radius:24px;
-  background:radial-gradient(ellipse at 50% 0%,#7c3aed20,transparent 65%),#11111f;
-  text-align:center;
-}
-.join-box h2{font-size:28px;font-weight:900}
-.join-box p{color:var(--muted);font-size:14px;margin:8px 0 23px}
-.ip-box{
-  max-width:520px;margin:auto;display:flex;align-items:center;gap:10px;
-  background:#090914;border:1px solid var(--border);padding:9px;
-  border-radius:14px;
-}
-.ip-box code{
-  flex:1;direction:ltr;text-align:center;color:#d8b4fe;
-  font-size:16px;overflow-wrap:anywhere;
-}
-.status-card{
-  margin-top:18px;padding:22px;border:1px solid var(--border);
-  border-radius:18px;background:#11111f;
-}
-.status-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.status-title{font-weight:900;font-size:17px}
-.status-pill{
-  display:inline-flex;align-items:center;gap:7px;font-size:12px;
-  padding:5px 11px;border-radius:30px;background:#ffffff09;color:var(--muted);
-}
-.dot{width:8px;height:8px;border-radius:50%;background:#a1a1aa}
-.dot.online{background:#4ade80;box-shadow:0 0 12px #4ade8080}
-.dot.offline{background:#fb7185}
-.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.status-item{background:#ffffff05;border:1px solid #ffffff0b;border-radius:12px;padding:13px;text-align:center}
-.status-item small{display:block;color:var(--muted);font-size:12px}
-.status-item strong{display:block;margin-top:4px;font-size:17px}
-.socials{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px}
-.socials a{
-  border:1px solid var(--border);background:#ffffff05;border-radius:12px;
-  padding:10px 16px;font-size:13px;transition:.2s
-}
-.socials a:hover{background:#a855f71a;border-color:#a855f76b}
-footer{border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:12px}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-footer strong{color:#d8b4fe}
-.toast{
-  position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
-  background:#211632;border:1px solid #a855f755;color:white;
-  padding:12px 20px;border-radius:12px;z-index:200;
-  opacity:0;pointer-events:none;transition:.25s;box-shadow:0 10px 35px #0007;
-  width:max-content;max-width:calc(100% - 30px);font-size:13px;text-align:center
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:900px){
-  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .nav-links{gap:14px}
-}
-@media(max-width:650px){
-  .container{width:calc(100% - 28px)}
-  .nav{min-height:68px}
-  .menu-btn{display:block}
-  .nav-cta{display:none}
-  .nav-links{
-    display:none;position:absolute;top:68px;right:14px;left:14px;
-    flex-direction:column;align-items:stretch;gap:0;padding:10px;
-    border:1px solid var(--border);border-radius:16px;
-    background:#11111ff5;box-shadow:0 18px 40px #0007;
-  }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:11px 12px;border-radius:9px}
-  .nav-links a:hover{background:#a855f718}
-  .hero{padding:72px 0 55px}
-  .hero p{font-size:14px}
-  .hero-stats{gap:8px;margin-top:32px}
-  .stat{min-width:calc(33.333% - 8px);padding:12px 7px}
-  .stat strong{font-size:18px}
-  .stat small{font-size:10px}
-  section{padding:48px 0}
-  .cards{gap:11px}
-  .card{padding:18px 13px;border-radius:16px}
-  .card-icon{width:48px;height:48px;font-size:24px;border-radius:14px}
-  .card h3{font-size:16px}
-  .card .subtitle{font-size:11px}
-  .price{font-size:18px}
-  .card .btn{font-size:12px;padding:10px 7px}
-  .card-tag{font-size:9px;top:10px;left:10px}
-  .join-box{padding:24px 14px}
-  .join-box h2{font-size:23px}
-  .ip-box code{font-size:12px}
-  .ip-box .btn{padding:10px;font-size:12px}
-  .status-grid{gap:7px}
-  .status-item{padding:10px 4px}
-  .status-item strong{font-size:14px}
-  .status-item small{font-size:10px}
-  .footer-inner{justify-content:center;text-align:center}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="وب‌سایت رسمی Royal Craft؛ اطلاعات سرور، راه‌های ارتباطی و شاپ">
+  <title>Royal Craft | Minecraft Server</title>
+  <style>
+    :root{--bg:#080d18;--panel:#101a2b;--blue:#38bdf8;--cyan:#67e8f9;--white:#f0f9ff;--muted:#9bb0c9;--border:rgba(56,189,248,.2)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{background:radial-gradient(ellipse at 50% 0%,#102b4a 0%,transparent 55%),var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.8;min-height:100vh;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}button{font:inherit}
+    #nano-particles{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    header,main,footer,#toast{position:relative;z-index:1}
+    .wrap{width:min(1100px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(8,13,24,.88);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:12px 0}
+    .logo{font-size:24px;font-weight:900;letter-spacing:1px;color:var(--cyan);text-shadow:0 0 12px #38bdf8,0 0 30px #0284c7}
+    .logo span{color:white}
+    .nav-links{display:flex;align-items:center;gap:20px;color:var(--muted);font-size:14px;flex-wrap:wrap}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--cyan)}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:1px solid rgba(103,232,249,.5);border-radius:12px;padding:11px 18px;background:linear-gradient(135deg,#0284c7,#2563eb);color:white;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:0 0 14px rgba(56,189,248,.15)}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 0 24px rgba(56,189,248,.4);border-color:var(--cyan)}
+    .btn.secondary{background:rgba(56,189,248,.08)}
+    .hero{text-align:center;padding:85px 0 65px}
+    .tag{display:inline-block;color:var(--cyan);border:1px solid var(--border);background:rgba(56,189,248,.08);padding:5px 14px;border-radius:30px;font-size:13px;margin-bottom:18px}
+    .hero h1{font-size:clamp(32px,6vw,58px);line-height:1.4;font-weight:900;margin-bottom:15px}
+    .hero h1 span{color:var(--cyan);text-shadow:0 0 25px rgba(56,189,248,.5)}
+    .hero p{color:var(--muted);max-width:650px;margin:0 auto 25px}
+    .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .section{padding:42px 0}.section-heading{text-align:center;margin-bottom:28px}
+    .section-heading h2{font-size:clamp(25px,4vw,34px);margin-bottom:7px}
+    .section-heading h2 span{color:var(--cyan)}.section-heading p{color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .card{position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(18,35,57,.96),rgba(10,17,30,.97));border:1px solid var(--border);border-radius:18px;padding:23px 18px;text-align:center;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .card::before{content:"";position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--cyan);box-shadow:0 0 15px var(--blue);opacity:.7}
+    .card:hover{transform:translateY(-7px);border-color:var(--blue);box-shadow:0 0 25px rgba(56,189,248,.17)}
+    .card-icon{font-size:38px;margin-bottom:8px;filter:drop-shadow(0 0 10px rgba(56,189,248,.45))}
+    .card h3{font-size:21px;margin-bottom:7px}.card p{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .server-box,.contact-box{max-width:800px;margin:0 auto;padding:28px;border:1px solid var(--border);border-radius:20px;background:rgba(16,26,43,.86);text-align:center;box-shadow:0 0 30px rgba(56,189,248,.06)}
+    .server-box h2,.contact-box h2{font-size:27px;margin-bottom:8px}.server-box p,.contact-box p{color:var(--muted);margin-bottom:18px}
+    .ip{direction:ltr;display:inline-block;color:var(--cyan);font-size:clamp(17px,4vw,25px);font-weight:bold;margin-bottom:20px;text-shadow:0 0 15px rgba(56,189,248,.3);overflow-wrap:anywhere}
+    .contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    footer{border-top:1px solid var(--border);text-align:center;color:var(--muted);padding:25px 12px;font-size:13px;margin-top:35px}
+    #toast{position:fixed;z-index:30;bottom:22px;left:50%;transform:translate(-50%,20px);background:#13243a;border:1px solid var(--blue);color:white;border-radius:12px;padding:12px 20px;box-shadow:0 0 25px rgba(56,189,248,.22);opacity:0;visibility:hidden;transition:.25s;width:max-content;max-width:90%;text-align:center;font-size:14px}
+    #toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+    .support-float{position:fixed;right:16px;bottom:20px;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 16px;color:#f0f9ff;background:linear-gradient(135deg,#101a2b,#080d18);border:1px solid #38bdf8;border-radius:16px;box-shadow:0 0 16px rgba(56,189,248,.35);font-weight:bold;transition:transform .2s,box-shadow .2s}
+    .support-float:hover{transform:translateY(-3px);box-shadow:0 0 24px rgba(56,189,248,.55)}.support-float span:last-child{color:var(--cyan);font-size:14px}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.nav{justify-content:center}.nav-links{justify-content:center;gap:14px}.hero{padding:58px 0 40px}.grid{grid-template-columns:1fr}.card{padding:22px}.server-box,.contact-box{padding:22px 14px}.support-float{right:12px;bottom:16px;padding:11px 14px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
 </head>
-
 <body>
-<header>
-  <div class="container nav">
-    <a class="logo" href="#home" aria-label="Royal Craft خانه">
-      <span class="logo-icon">♛</span>
-      <span>ROYAL <span>CRAFT</span></span>
-    </a>
-
-    <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو" aria-expanded="false">☰</button>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="#home">خانه</a>
-      <a href="#ranks">شاپ رنک</a>
-      <a href="#keys">شاپ کی</a>
-      <a href="#server">سرور</a>
-      <a href="#contact">ارتباط با ما</a>
-    </nav>
-
-    <a class="nav-cta" href="#ranks">مشاهده شاپ ↗</a>
-  </div>
-</header>
-
-<main>
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="eyebrow">✦ دنیای Royal Craft ✦</div>
-      <h1>به دنیای <span class="gradient-text">Royal Craft</span><br>خوش آمدی!</h1>
-      <p>
-        رنک و کی مورد علاقه‌ات را انتخاب کن و تجربه‌ات را در دنیای ماینکرفت
-        متفاوت‌تر کن. ماجراجویی سلطنتی تو از اینجا شروع می‌شود!
-      </p>
-
+  <canvas id="nano-particles" aria-hidden="true"></canvas>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#home">ROYAL<span>CRAFT</span></a>
+      <nav class="nav-links" aria-label="منوی اصلی">
+        <a href="#home">خانه</a><a href="#server">سرور</a><a href="#features">ویژگی‌ها</a><a href="#contact">ارتباط با ما</a>
+      </nav>
+      <a class="btn" href="#server">ورود به سرور</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero wrap" id="home">
+      <span class="tag">✦ دنیای Royal Craft ✦</span>
+      <h1>به <span>Royal Craft</span> خوش آمدی!</h1>
+      <p>ماجراجویی خودت را شروع کن و وارد دنیای ماینکرافت شو. برای اطلاعات و اخبار سرور، شبکه‌های اجتماعی ما را دنبال کن.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#ranks">⚡ مشاهده رنک‌ها</a>
-        <a class="btn btn-secondary" href="#keys">🔑 مشاهده کی‌ها</a>
+        <a class="btn" href="#server">⚡ آدرس سرور</a>
+        <a class="btn secondary" href="#contact">💬 ارتباط با ما</a>
       </div>
-
-      <div class="hero-stats">
-        <div class="stat"><strong>⚔️ PvP</strong><small>نبرد و رقابت</small></div>
-        <div class="stat"><strong>🛏️ BedWars</strong><small>نبرد تیمی</small></div>
-        <div class="stat"><strong>👑 Royal</strong><small>قلمرو سلطنتی</small></div>
+    </section>
+    <section class="section wrap" id="features">
+      <div class="section-heading"><h2>ویژگی‌های <span>Royal Craft</span></h2><p>ماجراجویی، رقابت و تجربه‌ای متفاوت در ماینکرافت</p></div>
+      <div class="grid">
+        <article class="card"><div class="card-icon">⚔️</div><h3>گیم‌مودهای متنوع</h3><p>برای رقابت و بازی با دوستان آماده شو.</p></article>
+        <article class="card"><div class="card-icon">👑</div><h3>جامعه بازیکنان</h3><p>با بازیکنان دیگر همراه شو و پیشرفت کن.</p></article>
+        <article class="card"><div class="card-icon">✨</div><h3>تجربه Royal</h3><p>اخبار و اطلاعیه‌ها را از راه‌های رسمی دنبال کن.</p></article>
       </div>
-    </div>
-  </section>
-
-  <section id="ranks">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">👑 شاپ رنک</div>
-        <h2>رنک مورد علاقه‌ات را انتخاب کن</h2>
-        <p>رنک‌ها را بررسی کن و رنک مناسب خودت را پیدا کن.</p>
+    </section>
+    <section class="section wrap" id="server">
+      <div class="section-heading"><h2>🌐 ورود به <span>سرور</span></h2><p>آدرس سرور Minecraft Java</p></div>
+      <div class="server-box">
+        <h2>🎮 اتصال به سرور</h2>
+        <p>آدرس زیر را کپی کن و در بخش Multiplayer ماینکرافت وارد کن.</p>
+        <div class="ip" id="server-ip">mc.hypixel.net</div><br>
+        <button class="btn" id="copy-ip">📋 کپی آدرس سرور</button>
+        <p style="font-size:12px;margin:16px 0 0">توجه: آدرس فعلی روی Hypixel تنظیم شده است.</p>
       </div>
-
-      <div class="cards">
-        <article class="card reveal">
-          <span class="card-tag">VIP</span>
-          <div class="card-icon">💎</div>
-          <h3>رنک VIP</h3>
-          <p class="subtitle">رنک VIP سرور</p>
-          <div class="price">۱۰۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="رنک VIP">انتخاب رنک ←</button>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-tag">MVP</span>
-          <div class="card-icon">⚔️</div>
-          <h3>رنک MVP</h3>
-          <p class="subtitle">رنک MVP سرور</p>
-          <div class="price">۲۱۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="رنک MVP">انتخاب رنک ←</button>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-tag">PLUS</span>
-          <div class="card-icon">✨</div>
-          <h3>رنک PLUS</h3>
-          <p class="subtitle">رنک PLUS سرور</p>
-          <div class="price">۳۰۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="رنک PLUS">انتخاب رنک ←</button>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-tag">SPECIAL</span>
-          <div class="card-icon">👑</div>
-          <h3>رنک SPONSOR</h3>
-          <p class="subtitle">رنک SPONSOR سرور</p>
-          <div class="price">۱,۰۰۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="رنک SPONSOR">انتخاب رنک ←</button>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="keys">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">🔑 شاپ کی</div>
-        <h2>کی‌های ویژه Royal Craft</h2>
-        <p>کی مورد نظرت را انتخاب کن و برای ماجراجویی آماده شو.</p>
-      </div>
-
-      <div class="cards">
-        <article class="card reveal">
-          <span class="card-tag">COMMON</span>
-          <div class="card-icon">🗝️</div>
-          <h3>Common Key</h3>
-          <p class="subtitle">کی معمولی</p>
-          <div class="price">۵۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="کی معمولی">انتخاب کی ←</button>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-tag">RARE</span>
-          <div class="card-icon">🔐</div>
-          <h3>Rare Key</h3>
-          <p class="subtitle">کی کمیاب</p>
-          <div class="price">۱۰۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="کی کمیاب">انتخاب کی ←</button>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-tag">LEGENDARY</span>
-          <div class="card-icon">🌟</div>
-          <h3>Legendary Key</h3>
-          <p class="subtitle">کی افسانه‌ای</p>
-          <div class="price">۲۰۰,۰۰۰ <small>تومان</small></div>
-          <button class="btn btn-primary buy-btn" data-item="کی افسانه‌ای">انتخاب کی ←</button>
-        </article>
-      </div>
-
-      <div class="notice reveal">
-        <strong>⚠️ توجه:</strong>
-        خریدها در حال حاضر نمایشی هستند و پرداخت واقعی انجام نمی‌شود.
-        برای فعال کردن خرید آنلاین باید درگاه پرداخت و سیستم تحویل رنک تنظیم شود.
-      </div>
-    </div>
-  </section>
-
-  <section id="server">
-    <div class="container">
-      <div class="join-box reveal">
-        <div class="eyebrow">🌐 به ما ملحق شو</div>
-        <h2>ورود به Royal Craft</h2>
-        <p>آی‌پی سرور Minecraft Java را کپی کن و به ماجراجویی بپیوند.</p>
-
-        <div class="ip-box">
-          <code id="serverIp">YOUR_SERVER_IP</code>
-          <button class="btn btn-primary" id="copyIp">📋 کپی آدرس</button>
+    </section>
+    <section class="section wrap" id="contact">
+      <div class="section-heading"><h2>ارتباط با <span>ما</span></h2><p>برای دنبال‌کردن اخبار و اطلاعیه‌های Royal Craft از لینک‌های زیر استفاده کن.</p></div>
+      <div class="contact-box">
+        <h2>💠 شبکه‌های اجتماعی Royal Craft</h2>
+        <p>از طریق شبکه اجتماعی دلخواهت با ما همراه باش.</p>
+        <div class="contact-links">
+          <a class="btn" href="https://t.me/royalcraft_ir" target="_blank" rel="noopener noreferrer">✈️ تلگرام</a>
+          <a class="btn" href="https://instagram.com/royalcraft.ir" target="_blank" rel="noopener noreferrer">📸 اینستاگرام</a>
+          <a class="btn" href="https://rubika.ir/royalcraft_ir" target="_blank" rel="noopener noreferrer">💠 روبیکا</a>
         </div>
       </div>
-
-      <div class="status-card reveal">
-        <div class="status-top">
-          <div class="status-title">⚡ وضعیت زنده Royal Craft</div>
-          <div class="status-pill"><span class="dot" id="statusDot"></span><span id="statusText">در حال بررسی سرور...</span></div>
-        </div>
-
-        <div class="status-grid">
-          <div class="status-item">
-            <small>👥 بازیکنان آنلاین</small>
-            <strong id="players">--</strong>
-          </div>
-          <div class="status-item">
-            <small>🎮 نسخه سرور</small>
-            <strong id="version">--</strong>
-          </div>
-          <div class="status-item">
-            <small>🌐 وضعیت اتصال</small>
-            <strong id="onlineStatus">نامشخص</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="eyebrow">💬 ارتباط با ما</div>
-        <h2>با Royal Craft در ارتباط باش</h2>
-        <p>برای اخبار، اطلاعیه‌ها و ارتباط با ما از راه‌های زیر استفاده کن.</p>
-        <div class="socials">
-          <a href="https://t.me/royalcraft_ir" target="_blank" rel="noopener noreferrer">✈️ تلگرام</a>
-          <a href="https://instagram.com/royalcraft.ir" target="_blank" rel="noopener noreferrer">📸 اینستاگرام</a>
-          <a href="https://rubika.ir/royalcraft_ir" target="_blank" rel="noopener noreferrer">💬 روبیکا</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer-inner">
-    <div>© Royal Craft — تمامی حقوق محفوظ است.</div>
-    <div>ساخته‌شده برای <strong>قلمرو سلطنتی ماینکرفت 👑</strong></div>
-  </div>
-</footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>
-const SERVER_IP = "YOUR_SERVER_IP";
-
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.addEventListener("click", () => {
-  const opened = navLinks.classList.toggle("open");
-  menuBtn.setAttribute("aria-expanded", String(opened));
-  menuBtn.textContent = opened ? "✕" : "☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.textContent = "☰";
-  });
-});
-
-let toastTimer;
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
-}
-
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast("✅ آدرس سرور کپی شد!");
-  } catch {
-    const area = document.createElement("textarea");
-    area.value = text;
-    area.style.position = "fixed";
-    area.style.opacity = "0";
-    document.body.appendChild(area);
-    area.select();
-    const success = document.execCommand("copy");
-    area.remove();
-    showToast(success ? "✅ آدرس سرور کپی شد!" : "کپی نشد؛ آدرس را دستی کپی کن.");
-  }
-}
-
-document.getElementById("serverIp").textContent = SERVER_IP;
-
-document.getElementById("copyIp").addEventListener("click", () => {
-  if (SERVER_IP === "YOUR_SERVER_IP") {
-    showToast("⚠️ ابتدا آی‌پی واقعی سرور را در کد قرار بده.");
-    return;
-  }
-  copyText(SERVER_IP);
-});
-
-document.querySelectorAll(".buy-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    showToast("🛒 " + button.dataset.item + " انتخاب شد؛ خرید آنلاین هنوز فعال نیست.");
-  });
-});
-
-/* انیمیشن ظاهر شدن کارت‌ها هنگام اسکرول */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {threshold: 0.12});
-
-document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
-
-/* بررسی وضعیت سرور از API عمومی؛ پس از تنظیم IP فعال می‌شود */
-async function checkServer() {
-  const dot = document.getElementById("statusDot");
-  const text = document.getElementById("statusText");
-  const onlineStatus = document.getElementById("onlineStatus");
-  const players = document.getElementById("players");
-  const version = document.getElementById("version");
-
-  if (!SERVER_IP || SERVER_IP === "YOUR_SERVER_IP") {
-    text.textContent = "آی‌پی تنظیم نشده";
-    onlineStatus.textContent = "نامشخص";
-    players.textContent = "--";
-    version.textContent = "--";
-    return;
-  }
-
-  try {
-    const response = await fetch(
-      "https://api.mcsrvstat.us/3/" + encodeURIComponent(SERVER_IP),
-      {cache: "no-store"}
-    );
-    if (!response.ok) throw new Error("Status unavailable");
-
-    const data = await response.json();
-
-    if (data.online) {
-      dot.className = "dot online";
-      text.textContent = "سرور آنلاین است";
-      onlineStatus.textContent = "آنلاین";
-      players.textContent = data.players
-        ? `${data.players.online} / ${data.players.max}`
-        : "اطلاعات موجود نیست";
-      version.textContent = data.version || "نامشخص";
-    } else {
-      dot.className = "dot offline";
-      text.textContent = "سرور آفلاین است";
-      onlineStatus.textContent = "آفلاین";
-      players.textContent = "۰";
-      version.textContent = data.version || "--";
-    }
-  } catch {
-    dot.className = "dot";
-    text.textContent = "بررسی وضعیت ناموفق بود";
-    onlineStatus.textContent = "نامشخص";
-    players.textContent = "--";
-    version.textContent = "--";
-  }
-}
-
-checkServer();
-setInterval(checkServer, 60000);
-</script>
+    </section>
+  </main>
+  <a class="support-float" href="https://rubika.ir/royalcraft_ir" target="_blank" rel="noopener noreferrer" aria-label="پشتیبانی Royal Craft در روبیکا" title="پشتیبانی Royal Craft"><span aria-hidden="true">🎧</span><span>پشتیبانی</span></a>
+  <footer><p>© Royal Craft — تمامی حقوق محفوظ است.</p><p>برای اخبار و اطلاعیه‌ها شبکه‌های اجتماعی رسمی را دنبال کنید.</p></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const toast=document.getElementById("toast");let toastTimer;
+    function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2800);}
+    document.getElementById("copy-ip").addEventListener("click",async()=>{const ip=document.getElementById("server-ip").textContent.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(ip);}else{const field=document.createElement("textarea");field.value=ip;field.style.position="fixed";field.style.opacity="0";document.body.appendChild(field);field.select();const copied=document.execCommand("copy");field.remove();if(!copied)throw new Error("Copy failed");}showToast("آدرس سرور کپی شد: "+ip);}catch{showToast("آدرس سرور: "+ip);}});
+    (()=>{const canvas=document.getElementById("nano-particles"),ctx=canvas.getContext("2d");if(!ctx||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;let width=0,height=0,particles=[],frame;
+    function resize(){const ratio=Math.min(window.devicePixelRatio||1,2);width=window.innerWidth;height=window.innerHeight;canvas.width=width*ratio;canvas.height=height*ratio;ctx.setTransform(ratio,0,0,ratio,0,0);const count=Math.min(65,Math.floor(width/18));particles=Array.from({length:count},()=>({x:Math.random()*width,y:Math.random()*height,r:Math.random()*2+.5,speed:Math.random()*.45+.12,drift:(Math.random()-.5)*.35,alpha:Math.random()*.5+.2}));}
+    function draw(){ctx.clearRect(0,0,width,height);for(const p of particles){p.y-=p.speed;p.x+=p.drift;if(p.y< -5){p.y=height+5;p.x=Math.random()*width;}if(p.x< -5)p.x=width+5;if(p.x>width+5)p.x=-5;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(56,189,248,"+p.alpha+")";ctx.shadowBlur=10;ctx.shadowColor="#38bdf8";ctx.fill();}ctx.shadowBlur=0;frame=requestAnimationFrame(draw);}
+    resize();draw();window.addEventListener("resize",resize);document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(frame);else{cancelAnimationFrame(frame);draw();}});})();
+  </script>
 </body>
 </html>
